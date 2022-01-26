@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>slam</name>
-  <version>0.0.0</version>
-  <description>The slam package</description>
+  <version>0.0.1</version>
+  <description>to apply 3D slam package to jackal UGV</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="jason@todo.todo">jason</maintainer>
+  <maintainer email="jiasenzheng2020@u.northwestern.edu">jason</maintainer>
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->
   <!-- Commonly used license strings: -->
   <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
-  <license>TODO</license>
+  <license>MIT</license>
 
 
   <!-- Url tags are optional, but multiple are allowed, one per tag -->
@@ -52,6 +52,13 @@
   <build_depend>roscpp</build_depend>
   <build_export_depend>roscpp</build_export_depend>
   <exec_depend>roscpp</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>jackal_description</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>gazebo_ros</exec_depend>
+  <exec_depend>jackal_description</exec_depend>
+  <exec_depend>jackal_control</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

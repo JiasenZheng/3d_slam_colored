@@ -1,0 +1,29 @@
+<launch>
+    <!-- <param name="robot_description" command = "$(find xacro)/xacro $(find jackal_description)/urdf/jackal.urdf.xacro"/> -->
+    
+    <!-- include gazebo empty_world launch file -->
+    <include file = "$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name = "world_name" value = "$(find slam)/world/jackal_world.world"/>
+    </include>
+
+    <!-- include jackal description launch file -->
+    <include file = "$(find jackal_description)/launch/description.launch">
+        <arg name = "config" value = "front_laser"/>
+    </include>
+
+    <!-- include jackal control launch file -->
+    <include file = "$(find jackal_control)/launch/control.launch"/>
+
+    <!-- launch joint state publisher -->
+    <node name = "joint_state_publisher" pkg = "joint_state_publisher" type = "joint_state_publisher"/>
+
+    <!-- launch jackal control teleop.launch -->
+    <include file = "$(find jackal_control)/launch/teleop.launch" output = "screen">
+        <arg name = "joystick" value="false"/>
+    </include>
+
+
+    <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/> -->
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+	      args="-urdf -model jackal -param robot_description -x 0.0 -y 0.0 -z 0.0" />
+</launch>
