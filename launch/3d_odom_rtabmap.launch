@@ -21,7 +21,7 @@
             <remap from="scan_cloud" to="/mid/points"/>
             <remap from="rgbd_image" to="rgbd_image"/>
             
-            <param name="queue_size" type="int" value="10"/>
+            <param name="queue_size" type="int" value="100"/>
 
             <!-- RTAB-Map's parameters -->
             <param name="RGBD/NeighborLinkRefining" type="string" value="true"/>
