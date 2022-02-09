@@ -1,6 +1,7 @@
 <launch>
     <group ns="rtabmap">
 
+
         <node pkg="nodelet" type="nodelet" name="rgbd_sync" args="standalone rtabmap_ros/rgbd_sync" output="screen">
             <remap from="rgb/image"        to="/realsense/color/image_raw"/>
             <remap from="depth/image"      to="/realsense/depth/image_rect_raw"/>
