@@ -32,7 +32,7 @@
     <include file = "$(find slam)/launch/3d_odom_rtabmap.launch"/>
 
     <!-- launch move_base -->
-    <node name="move_base" type="move_base" pkg="move_base"/>
+    <include file = "$(find slam)/launch/move_base.launch"/>
 
 
     <node name = "rviz" pkg = "rviz" type = "rviz" args="-d $(find slam)/config/jackal.rviz" if = "$(arg use_rviz)"/>
