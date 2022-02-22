@@ -30,8 +30,20 @@
     <!-- launch move_base -->
     <include file = "$(find slam)/launch/move_base.launch"/>
 
-
+    <!-- launch rviz -->
     <node name = "rviz" pkg = "rviz" type = "rviz" args="-d $(find slam)/config/jackal.rviz" if = "$(arg use_rviz)"/>
+
+    <!-- bring up lidar -->
+    <include file = "$(find velodyne_pointcloud)/launch/VLP16_points.launch"/>
+
+    <!-- bring up realsense camera -->
+    <include file = "$(find realsense2_camera)/launch/rs_camera.launch"/>
+
+    <!-- transform from body to Lidar -->
+    <node name = "base2lidar" pkg = "static_transform_publisher" type = "tf" args = "0 0 0.3 0 0 0 /base_link /velodyne 100"/>
+
+    <!-- transform from lidar to realsense camera -->
+    <node name = "lidar2rs" pkg = "static_transform_publisher" type = "tf" args = "0 0.1 0 0 0 0 /velodyne /camera_color_optical_frame 100"/>
 
     <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
 	      args="-urdf -model jackal -param robot_description -x 0.0 -y 0.0 -z 1.0" />
