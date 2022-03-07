@@ -29,10 +29,6 @@
     <!-- <include file = "$(find realsense2_camera)/launch/rs_camera.launch"/> -->
 
 
-    <!-- launch move_base -->
-    <include file = "$(find slam)/launch/move_base.launch"/>
-
-
     <node name = "rviz" pkg = "rviz" type = "rviz" if = "$(arg use_rviz)"/>
 
     <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
