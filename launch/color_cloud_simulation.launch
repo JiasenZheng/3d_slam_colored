@@ -29,8 +29,8 @@
     <!-- <include file = "$(find realsense2_camera)/launch/rs_camera.launch"/> -->
 
 
-    <node name = "rviz" pkg = "rviz" type = "rviz" if = "$(arg use_rviz)"/>
+    <node name = "rviz" pkg = "rviz" type = "rviz" args = "-d $(find slam)/config/color_cloud.rviz" if = "$(arg use_rviz)"/>
 
-    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-	      args="-urdf -model jackal -param robot_description -x 0.0 -y 0.0 -z 1.0" />
+    <!-- <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+	      args="-urdf -model jackal -param robot_description -x 0.0 -y 0.0 -z 1.0" /> -->
 </launch>
