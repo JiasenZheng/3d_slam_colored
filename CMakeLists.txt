@@ -8,9 +8,15 @@ project(slam)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  cv_bridge
+  pcl_conversions
+  pcl_ros 
   roscpp
+  sensor_msgs
+  tf2_ros
 )
 
+find_package(Armadillo REQUIRED)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -103,9 +109,17 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES slam
- CATKIN_DEPENDS roscpp
+ CATKIN_DEPENDS 
+ cv_bridge
+ pcl_conversions
+ pcl_ros 
+ roscpp
+ sensor_msgs
+ tf2_ros
 #  DEPENDS system_lib
 )
+
+
 
 ###########
 ## Build ##
@@ -115,6 +129,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
 # include
+  ${ARMADILLO_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -148,6 +163,8 @@ target_link_libraries(color_cloud
   ${catkin_LIBRARIES}
 )
 
+target_link_libraries(color_cloud
+  ${ARMADILLO_LIBRARIES})
 #############
 ## Install ##
 #############

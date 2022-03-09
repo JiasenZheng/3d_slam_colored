@@ -1,6 +1,7 @@
 <launch>
     <!-- export JACKAL_URDF_EXTRAS=$HOME/Desktop/realsense.urdf.xacro -->
     <arg name = "use_rviz" default = "true" doc = "whether to use rviz"/>
+    <arg name = "debug" default = "false" doc = "whether to debug"/>
 
     <!-- load pid gains yaml file -->
     <rosparam command = "load" file = "$(find slam)/config/pid_gains.yaml"/>
@@ -25,12 +26,10 @@
         <arg name = "joystick" value="false"/>
     </include>
 
-    <!-- launch camera node -->
-    <!-- <include file = "$(find realsense2_camera)/launch/rs_camera.launch"/> -->
-
 
     <node name = "rviz" pkg = "rviz" type = "rviz" args = "-d $(find slam)/config/color_cloud.rviz" if = "$(arg use_rviz)"/>
 
-    <!-- <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-	      args="-urdf -model jackal -param robot_description -x 0.0 -y 0.0 -z 1.0" /> -->
+    <node name = "color_cloud" pkg = "slam" type = "color_cloud" output = "screen" unless = "$(arg debug)"/>
+    
+
 </launch>

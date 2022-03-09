@@ -60,6 +60,20 @@
   <exec_depend>jackal_control</exec_depend>
   <exec_depend>joint_state_publisher</exec_depend>
   <exec_depend>rviz</exec_depend>
+  <exec_depend>jackal_navigation</exec_depend>
+  <exec_depend>tf</exec_depend>
+  <exec_depend>move_base</exec_depend>
+  <exec_depend>nodelet</exec_depend>
+  <exec_depend>rtabmap_ros</exec_depend>
+  <exec_depend>velodyne_pointcloud</exec_depend>
+  <exec_depend>realsense2_camera</exec_depend>
+  <build_depend>libpcl-all-dev</build_depend>
+  <exec_depend>libpcl-all</exec_depend>
+  <depend>pcl_conversions</depend>
+  <depend>sensor_msgs</depend>
+  <depend>pcl_ros</depend>
+  <depend>tf2_ros</depend>
+  <depend>cv_bridge</depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
