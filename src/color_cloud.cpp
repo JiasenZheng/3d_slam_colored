@@ -139,20 +139,23 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
                 colored_point.z = cloud[i].z;
                 // try
                 // {
-                //     int r = cv_image.at<cv::Vec3b>(0,0)[2];
-                //     int g = cv_image.at<cv::Vec3b>(0,0)[1];
-                //     int b = cv_image.at<cv::Vec3b>(0,0)[0];
-                //     ROS_INFO("r: %i, g: %i, b: %i",r,g,b);
+                //     int r = cv_image.at<cv::Vec3b>(100,100)[2];
+                //     // int g = cv_image.at<cv::Vec3b>(0,0)[1];
+                //     // int b = cv_image.at<cv::Vec3b>(0,0)[0];
+                //     // ROS_INFO("r: %i, g: %i, b: %i",r,g,b);
+                //     ROS_INFO("x: %i y: %i r: %i",x_coord,y_coord,r);
                 // }
                 // catch(const std::exception& e)
                 // {
                 //     ROS_ERROR("exception: %s", e.what());
                 // }
+                int r = cv_image.at<cv::Vec3b>(y_coord,x_coord)[2];
+                int g = cv_image.at<cv::Vec3b>(y_coord,x_coord)[1];
+                int b = cv_image.at<cv::Vec3b>(y_coord,x_coord)[0];
                 
-                
-                colored_point.r = 0;
-                colored_point.g = 100;
-                colored_point.b = 100;
+                colored_point.r = r;
+                colored_point.g = g;
+                colored_point.b = b;
                 colored_point.a = 255;
                 cloud_out.push_back(colored_point);
             }
@@ -180,6 +183,19 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
     cloud_pub.publish (output);
 }
 
+void print_image()
+{
+    for (int r = 0; r < cv_image.rows; r++)
+    {
+        for (int c = 0; c < cv_image.cols; c++)
+        {
+            int b = cv_image.at<cv::Vec3b>(r,c)[0];
+            ROS_INFO("Row: %i, Col: %i, Blue: %i \n", r,c,b);
+            // ROS_INFO("Row: %i, Col: %i\n", r,c);
+        }
+    }
+}
+
 int main (int argc, char** argv)
 {
     // Initialize ROS
@@ -198,9 +214,11 @@ int main (int argc, char** argv)
     // Create a Ros publisher for the output image
     image_pub = nh.advertise<sensor_msgs::Image>("/output/image", 1);
 
+
     ros::Rate loop_rate(100);
     while(ros::ok())
     {
+        // print_image();
         ros::spinOnce();
         loop_rate.sleep();
     }
