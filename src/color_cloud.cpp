@@ -40,8 +40,8 @@ void image_cb(const sensor_msgs::ImageConstPtr& msg)
 {
     try
     {
-        cv_bridge::CvImageConstPtr cv_ptr = cv_bridge::toCvShare(msg, enc::BGR8);
-        // cv_image = cv_ptr->image;
+        cv_ptr = cv_bridge::toCvShare(msg, enc::BGR8);
+        cv_image = cv_ptr->image;
     }
     catch(cv_bridge::Exception& e)
     {
@@ -55,7 +55,7 @@ void image_cb(const sensor_msgs::ImageConstPtr& msg)
     //     {
     //         int b = cv_ptr->image.at<cv::Vec3b>(r,c)[0];
     //         ROS_INFO("Row: %i, Col: %i, Blue: %i \n", r,c,b);
-    //         // ROS_INFO("Row: %i, Col: %i\n", cv_ptr->image.rows,cv_ptr->image.cols);
+    //         // ROS_INFO("Row: %i, Col: %i\n", r,c);
     //     }
     // }
 
@@ -198,6 +198,11 @@ int main (int argc, char** argv)
     // Create a Ros publisher for the output image
     image_pub = nh.advertise<sensor_msgs::Image>("/output/image", 1);
 
-    // Spin
-    ros::spin ();
+    ros::Rate loop_rate(100);
+    while(ros::ok())
+    {
+        ros::spinOnce();
+        loop_rate.sleep();
+    }
+
 }
