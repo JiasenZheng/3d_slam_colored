@@ -1,6 +1,4 @@
 <launch>
-    <arg name = "use_rviz" default = "true" doc = "whether to use rviz"/>
-
     <!-- load pid gains yaml file -->
     <rosparam command = "load" file = "$(find slam)/config/pid_gains.yaml"/>
 
@@ -18,8 +16,6 @@
     <include file = "$(find slam)/launch/jackal_description.launch">
         <arg name = "config" value = "3d_laser"/>
     </include>
-
-    <node name = "rviz" pkg = "rviz" type = "rviz"/>
 
     <node name = "find_velo_points" pkg = "velo2rs" type = "velo2rs_find_velo_points">
         <remap from="/set_pos" to="/velo/set_pos"/>
