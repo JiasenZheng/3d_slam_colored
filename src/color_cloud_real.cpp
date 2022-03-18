@@ -69,7 +69,7 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
 
     // Get transform from cloud frame to camera frame
     geometry_msgs::TransformStamped transform;
-    transform.header.frame_id = input->header.frame_id;
+    transform.header.frame_id = cam_frame_id;
     transform.header.stamp = input->header.stamp;
     // transform.transform.translation.x = 0.195;
     // transform.transform.translation.y = 0.00;

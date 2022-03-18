@@ -6,8 +6,6 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /Image1
-        - /PointCloud22
         - /TF1/Frames1
       Splitter Ratio: 0.5
     Tree Height: 929
@@ -125,19 +123,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        front_realsense:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        front_realsense_gazebo:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        front_realsense_lens:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         front_right_wheel_link:
           Alpha: 1
           Show Axes: false
@@ -151,35 +136,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        mid_vlp16_leg1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mid_vlp16_leg2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mid_vlp16_leg3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mid_vlp16_leg4:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mid_vlp16_mount:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        mid_vlp16_plate:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         navsat_link:
           Alpha: 1
           Show Axes: false
@@ -200,16 +156,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
         rear_right_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        velodyne:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        velodyne_base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -267,6 +213,18 @@ Visualization Manager:
         All Enabled: false
         base_link:
           Value: false
+        camera_aligned_depth_to_color_frame:
+          Value: false
+        camera_color_frame:
+          Value: false
+        camera_color_optical_frame:
+          Value: false
+        camera_depth_frame:
+          Value: false
+        camera_depth_optical_frame:
+          Value: true
+        camera_link:
+          Value: false
         chassis_link:
           Value: false
         front_fender_link:
@@ -275,29 +233,11 @@ Visualization Manager:
           Value: false
         front_mount:
           Value: false
-        front_realsense:
-          Value: false
-        front_realsense_gazebo:
-          Value: true
-        front_realsense_lens:
-          Value: false
         front_right_wheel_link:
           Value: false
         imu_link:
           Value: false
         mid_mount:
-          Value: false
-        mid_vlp16_leg1:
-          Value: false
-        mid_vlp16_leg2:
-          Value: false
-        mid_vlp16_leg3:
-          Value: false
-        mid_vlp16_leg4:
-          Value: false
-        mid_vlp16_mount:
-          Value: false
-        mid_vlp16_plate:
           Value: false
         navsat_link:
           Value: false
@@ -313,8 +253,6 @@ Visualization Manager:
           Value: false
         velodyne:
           Value: true
-        velodyne_base_link:
-          Value: false
       Marker Alpha: 1
       Marker Scale: 1
       Name: TF
@@ -324,6 +262,15 @@ Visualization Manager:
       Tree:
         odom:
           base_link:
+            camera_link:
+              camera_aligned_depth_to_color_frame:
+                camera_color_optical_frame:
+                  {}
+              camera_color_frame:
+                {}
+              camera_depth_frame:
+                camera_depth_optical_frame:
+                  {}
             chassis_link:
               front_fender_link:
                 {}
@@ -335,23 +282,7 @@ Visualization Manager:
                 {}
               mid_mount:
                 front_mount:
-                  front_realsense_lens:
-                    front_realsense:
-                      front_realsense_gazebo:
-                        {}
-                mid_vlp16_mount:
-                  mid_vlp16_leg1:
-                    {}
-                  mid_vlp16_leg2:
-                    {}
-                  mid_vlp16_leg3:
-                    {}
-                  mid_vlp16_leg4:
-                    {}
-                  mid_vlp16_plate:
-                    velodyne_base_link:
-                      velodyne:
-                        {}
+                  {}
                 rear_mount:
                   {}
               navsat_link:
@@ -362,6 +293,8 @@ Visualization Manager:
                 {}
               rear_right_wheel_link:
                 {}
+            velodyne:
+              {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -420,7 +353,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 4.453668594360352
+      Distance: 6.383603572845459
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -436,9 +369,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.719795286655426
+      Pitch: 0.9447950124740601
       Target Frame: <Fixed Frame>
-      Yaw: 3.687356948852539
+      Yaw: 2.137355089187622
     Saved: ~
 Window Geometry:
   Displays:
