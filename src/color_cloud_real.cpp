@@ -75,26 +75,24 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
 
     transform.header.frame_id = cam_frame_id;
     transform.header.stamp = input->header.stamp;
-    // transform.transform.translation.x = 0.195;
-    // transform.transform.translation.y = 0.00;
-    // transform.transform.translation.z = -0.128;
-    // transform.transform.rotation.x = -0.500;
-    // transform.transform.rotation.y =  0.500;
-    // transform.transform.rotation.z = -0.500;
-    // transform.transform.rotation.w =  0.500;
+    transform.transform.translation.x = 0.00;
+    transform.transform.translation.y = 0.00;
+    transform.transform.translation.z = 0.00;
+    transform.transform.rotation.x =  0.500;
+    transform.transform.rotation.y = -0.500;
+    transform.transform.rotation.z =  0.500;
+    transform.transform.rotation.w =  0.500;
 
-    // transform.transform.translation.x = 0.000;
-    // transform.transform.translation.y = -0.155;
-    // transform.transform.translation.z = -0.169;
 
-    transform.transform.translation.x = 0.179;
-    transform.transform.translation.y = -0.159;
-    transform.transform.translation.z = -0.134;
 
-    transform.transform.rotation.x = 0.464;
-    transform.transform.rotation.y = -0.477;
-    transform.transform.rotation.z = 0.574;
-    transform.transform.rotation.w =  0.478;
+    // transform.transform.translation.x = 0.179;
+    // transform.transform.translation.y = -0.159;
+    // transform.transform.translation.z = -0.134;
+
+    // transform.transform.rotation.x = 0.464;
+    // transform.transform.rotation.y = -0.477;
+    // transform.transform.rotation.z = 0.574;
+    // transform.transform.rotation.w =  0.478;
 
     // try
     // {
