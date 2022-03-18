@@ -6,7 +6,7 @@
     <node name = "rviz" pkg = "rviz" type = "rviz" args="-d $(find slam)/config/calibration.rviz" if = "$(arg calib)"/>
     <node name = "rviz" pkg = "rviz" type = "rviz" args="-d $(find slam)/config/color_cloud.rviz" if = "$(arg color_cloud)"/>
 
-    <node name = "teleop_twist_keyboard" pkg = "teleop_twist_keyboard" type = "teleop_twist_keyboard" output = "screen" if = "$(arg color_cloud)"/>
+    <!-- <node name = "teleop_twist_keyboard" pkg = "teleop_twist_keyboard" type = "teleop_twist_keyboard" output = "screen" if = "$(arg color_cloud)"/> -->
 
     
 </launch>

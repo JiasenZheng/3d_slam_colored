@@ -21,7 +21,7 @@
 
 
 static ros::Publisher cloud_pub;
-static ros::Publisher image_pub;
+// static ros::Publisher image_pub;
 static std::string cam_frame_id = "camera_depth_optical_frame";
 static std::string cloud_frame_id = "velodyne";
 static tf2_ros::Buffer tf_buffer;
@@ -203,16 +203,16 @@ int main (int argc, char** argv)
     ros::NodeHandle nh;
 
     // Create a ROS subscriber for the input image
-    ros::Subscriber image_sub = nh.subscribe("/realsense/color/image_raw", 1, image_cb);
+    ros::Subscriber image_sub = nh.subscribe("/camera/color/image_raw", 1, image_cb);
 
     // Create a ROS subscriber for the input point cloud
-    ros::Subscriber cloud_sub = nh.subscribe("/mid/points", 1, cloud_cb);
+    ros::Subscriber cloud_sub = nh.subscribe("/velodyne_points", 1, cloud_cb);
 
     // Create a ROS publisher for the output point cloud
     cloud_pub = nh.advertise<sensor_msgs::PointCloud2>("/output/points", 1);
 
     // Create a Ros publisher for the output image
-    image_pub = nh.advertise<sensor_msgs::Image>("/output/image", 1);
+    // image_pub = nh.advertise<sensor_msgs::Image>("/output/image", 1);
 
 
     ros::Rate loop_rate(100);
