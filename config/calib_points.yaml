@@ -1,0 +1,26 @@
+velo:
+  point_o:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  point_x:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  point_z:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+rs:
+  point_o:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  point_x:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  point_z:
+    x: 0.0
+    y: 0.0
+    z: 0.0

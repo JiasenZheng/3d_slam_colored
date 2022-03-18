@@ -1,6 +1,7 @@
 <launch>
     <!-- load pid gains yaml file -->
     <rosparam command = "load" file = "$(find slam)/config/pid_gains.yaml"/>
+    <rosparam command = "load" file = "$(find slam)/config/calib_points.yaml"/>
 
     <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch">
 	    <arg name="organize_cloud" value="true"/>
