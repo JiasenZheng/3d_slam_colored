@@ -12,6 +12,7 @@
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 #include <tf2_sensor_msgs/tf2_sensor_msgs.h>
 #include <tf2_ros/message_filter.h>
+#include <tf/transform_listener.h>
 // cv includes
 #include <image_transport/image_transport.h>
 #include <cv_bridge/cv_bridge.h>
@@ -25,6 +26,7 @@ static ros::Publisher cloud_pub;
 static std::string cam_frame_id = "camera_depth_optical_frame";
 static std::string cloud_frame_id = "velodyne";
 static tf2_ros::Buffer tf_buffer;
+static tf::TransformListener listener;
 static sensor_msgs::Image sensor_image;
 namespace enc = sensor_msgs::image_encodings;
 static cv::Mat cv_image;
@@ -94,11 +96,14 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
 
     try
     {
-        transform = tf_buffer.lookupTransform(cam_frame_id,cloud_frame_id, input->header.stamp);
+        // transform = tf_buffer.lookupTransform(cam_frame_id,cloud_frame_id, input->header.stamp);
+        listener.lookupTransform("/camera_depth_optical_frame","/velodyne",ros::Time(0),transform);
+
     }
     catch(const tf2::TransformException& e)
     {
         ROS_WARN_STREAM("LookupTransform failed. Reason: " << e.what());
+        ros::Duration(1.0).sleep();
     }
 
     // Transform point cloud to camera frame
