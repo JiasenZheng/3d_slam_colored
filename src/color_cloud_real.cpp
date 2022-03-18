@@ -83,23 +83,23 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
     // transform.transform.translation.y = -0.155;
     // transform.transform.translation.z = -0.169;
 
-    transform.transform.translation.x = 0.000;
-    transform.transform.translation.y = 0.000;
-    transform.transform.translation.z = 0.000;
+    // transform.transform.translation.x = 0.000;
+    // transform.transform.translation.y = 0.000;
+    // transform.transform.translation.z = 0.000;
 
-    transform.transform.rotation.x = 0.500;
-    transform.transform.rotation.y = -0.500;
-    transform.transform.rotation.z = 0.500;
-    transform.transform.rotation.w =  0.500;
+    // transform.transform.rotation.x = 0.500;
+    // transform.transform.rotation.y = -0.500;
+    // transform.transform.rotation.z = 0.500;
+    // transform.transform.rotation.w =  0.500;
 
-    // try
-    // {
-    //     transform = tf_buffer.lookupTransform(cam_frame_id,cloud_frame_id, input->header.stamp);
-    // }
-    // catch(const tf2::TransformException& e)
-    // {
-    //     ROS_WARN_STREAM("LookupTransform failed. Reason: " << e.what());
-    // }
+    try
+    {
+        transform = tf_buffer.lookupTransform(cam_frame_id,cloud_frame_id, input->header.stamp);
+    }
+    catch(const tf2::TransformException& e)
+    {
+        ROS_WARN_STREAM("LookupTransform failed. Reason: " << e.what());
+    }
 
     // Transform point cloud to camera frame
     sensor_msgs::PointCloud2 cloud_cam;
