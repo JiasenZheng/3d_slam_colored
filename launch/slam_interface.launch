@@ -4,7 +4,7 @@
     <arg name = "color_cloud" default = "false" doc = "whether in color_cloud mode"/>
     <node name = "rviz" pkg = "rviz" type = "rviz" args="-d $(find slam)/config/real_world.rviz" if = "$(arg slam)"/>
     <node name = "rviz" pkg = "rviz" type = "rviz" args="-d $(find slam)/config/calibration.rviz" if = "$(arg calib)"/>
-    <node name = "rviz" pkg = "rviz" type = "rviz" args="-d $(find slam)/config/color_cloud.rviz" if = "$(arg color_cloud)"/>
+    <node name = "rviz" pkg = "rviz" type = "rviz" args="-d $(find slam)/config/color_cloud_real.rviz" if = "$(arg color_cloud)"/>
 
     <!-- <node name = "teleop_twist_keyboard" pkg = "teleop_twist_keyboard" type = "teleop_twist_keyboard" output = "screen" if = "$(arg color_cloud)"/> -->
 
