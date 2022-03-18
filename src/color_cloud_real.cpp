@@ -71,7 +71,9 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
 
     // Get transform from cloud frame to camera frame
     // geometry_msgs::TransformStamped transform;
-    tf::StampedTransform transform;
+    
+    // tf::StampedTransform transform;
+
     // transform.header.frame_id = cam_frame_id;
     // transform.header.stamp = input->header.stamp;
     // transform.transform.translation.x = 0.195;
@@ -95,17 +97,17 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
     // transform.transform.rotation.z = 0.500;
     // transform.transform.rotation.w =  0.500;
 
-    try
-    {
-        // transform = tf_buffer.lookupTransform(cam_frame_id,cloud_frame_id, input->header.stamp);
-        listener.lookupTransform("/camera_depth_optical_frame","/velodyne",ros::Time(0),transform);
+    // try
+    // {
+    //     // transform = tf_buffer.lookupTransform(cam_frame_id,cloud_frame_id, input->header.stamp);
+    //     listener.lookupTransform("/camera_depth_optical_frame","/velodyne",ros::Time(0),transform);
 
-    }
-    catch(const tf2::TransformException& e)
-    {
-        ROS_WARN_STREAM("LookupTransform failed. Reason: " << e.what());
-        ros::Duration(1.0).sleep();
-    }
+    // }
+    // catch(const tf2::TransformException& e)
+    // {
+    //     ROS_WARN_STREAM("LookupTransform failed. Reason: " << e.what());
+    //     ros::Duration(1.0).sleep();
+    // }
 
     // // Transform point cloud to camera frame
     // sensor_msgs::PointCloud2 cloud_cam;
@@ -225,11 +227,18 @@ int main (int argc, char** argv)
     // Create a Ros publisher for the output image
     // image_pub = nh.advertise<sensor_msgs::Image>("/output/image", 1);
 
-
     ros::Rate loop_rate(100);
     while(ros::ok())
     {
-        // print_image();
+        tf::StampedTransform transform;
+        try{
+            listener.lookupTransform("/camera_depth_optical_frame", "/velodyne",  
+                                    ros::Time(0), transform);
+        }
+        catch (tf::TransformException ex){
+            ROS_ERROR("%s",ex.what());
+            ros::Duration(1.0).sleep();
+        }
         ros::spinOnce();
         loop_rate.sleep();
     }
