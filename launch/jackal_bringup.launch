@@ -16,7 +16,7 @@
     </include>
 
     <node pkg="tf" type="static_transform_publisher" name="base2velodyne" args="0.09 0.0 0.25 0 0 0 /base_link /velodyne 100" />
-    <!-- <node pkg="tf" type="static_transform_publisher" name="base2camera" args="0.14 0 0.24 0 0 0 /base_link /camera_link 100" /> -->
+    <node pkg="tf" type="static_transform_publisher" name="base2camera" args="0.14 0 0.24 0 0 0 /base_link /camera_link 100" />
     <!-- <node pkg="tf" type="static_transform_publisher" name="velo2rs" args="0.169121 0.149266 -0.155839 -1.683598 -0.077344 -1.455875 /velodyne /camera_depth_optical_frame 100" /> -->
     <node pkg="tf" type="static_transform_publisher" name="velo2rs" args="0.0 0.0 0.0 -1.5707 0.0 -1.5707 /velodyne /camera_depth_optical_frame 100" />
 
