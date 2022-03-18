@@ -69,12 +69,12 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
     pcl::PointCloud<pcl::PointXYZRGB> cloud_out;
 
     // Get transform from cloud frame to camera frame
-    // geometry_msgs::TransformStamped transform;
+    geometry_msgs::TransformStamped transform;
     
     // tf::StampedTransform transform;
 
-    // transform.header.frame_id = cam_frame_id;
-    // transform.header.stamp = input->header.stamp;
+    transform.header.frame_id = cam_frame_id;
+    transform.header.stamp = input->header.stamp;
     // transform.transform.translation.x = 0.195;
     // transform.transform.translation.y = 0.00;
     // transform.transform.translation.z = -0.128;
@@ -87,14 +87,14 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
     // transform.transform.translation.y = -0.155;
     // transform.transform.translation.z = -0.169;
 
-    // transform.transform.translation.x = 0.000;
-    // transform.transform.translation.y = 0.000;
-    // transform.transform.translation.z = 0.000;
+    transform.transform.translation.x = 0.179;
+    transform.transform.translation.y = -0.159;
+    transform.transform.translation.z = -0.134;
 
-    // transform.transform.rotation.x = 0.500;
-    // transform.transform.rotation.y = -0.500;
-    // transform.transform.rotation.z = 0.500;
-    // transform.transform.rotation.w =  0.500;
+    transform.transform.rotation.x = 0.464;
+    transform.transform.rotation.y = -0.477;
+    transform.transform.rotation.z = 0.574;
+    transform.transform.rotation.w =  0.478;
 
     // try
     // {
@@ -108,91 +108,91 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
     //     ros::Duration(1.0).sleep();
     // }
 
-    // // Transform point cloud to camera frame
-    // sensor_msgs::PointCloud2 cloud_cam;
-    // tf2::doTransform(*input, cloud_cam, transform);
-    // cloud_cam.header.frame_id = cam_frame_id;
+    // Transform point cloud to camera frame
+    sensor_msgs::PointCloud2 cloud_cam;
+    tf2::doTransform(*input, cloud_cam, transform);
+    cloud_cam.header.frame_id = cam_frame_id;
 
-    // // Convert sensor msg to pcl
-    // pcl::PointCloud<pcl::PointXYZ> cloud;
-    // pcl::fromROSMsg(cloud_cam,cloud);
+    // Convert sensor msg to pcl
+    pcl::PointCloud<pcl::PointXYZ> cloud;
+    pcl::fromROSMsg(cloud_cam,cloud);
 
-    // pcl::PointCloud<pcl::PointXYZ> cloud_in;
-    // pcl::fromROSMsg(*input,cloud_in);
+    pcl::PointCloud<pcl::PointXYZ> cloud_in;
+    pcl::fromROSMsg(*input,cloud_in);
 
     
 
-    // // Iterate over each point in cloud
-    // for (unsigned int i = 0; i < cloud.size(); i++)
-    // {
-    //     if (cloud[i].z>0)
-    //     {
-    //         arma::mat point = arma::colvec( {cloud[i].x, cloud[i].y, cloud[i].z} );
-    //         // point.print("Point:");
-    //         // projection.print("Projection:");
-    //         // arma::mat point = arma::mat(4,1,arma::fill::ones);
-    //         // point(0,0) = cloud[i].x;
-    //         // point(1,0) = cloud[i].y;
-    //         // point(2,0) = cloud[i].z;        
-    //         // arma::mat point = arma::mat(4,1,arma::fill::ones);
-    //         // point(0,0) = cloud[i].x;
-    //         // point(1,0) = cloud[i].y;
-    //         // point(2,0) = cloud[i].z;
-    //         // arma::mat camera_coords;
-    //         arma::mat camera_coords = (projection*point)/cloud[i].z;
-    //         int x_coord = round(camera_coords(0,0));
-    //         int y_coord = round(camera_coords(1,0));
-    //         if (x_coord>=0 && x_coord<640 && y_coord>=0 && y_coord<480)
-    //         {
-    //             // ROS_INFO("x_coord: %i, y_coord: %i",x_coord,y_coord);
-    //             pcl::PointXYZRGB colored_point;
-    //             colored_point.x = cloud[i].x;
-    //             colored_point.y = cloud[i].y;
-    //             colored_point.z = cloud[i].z;
-    //             // try
-    //             // {
-    //             //     int r = cv_image.at<cv::Vec3b>(100,100)[2];
-    //             //     // int g = cv_image.at<cv::Vec3b>(0,0)[1];
-    //             //     // int b = cv_image.at<cv::Vec3b>(0,0)[0];
-    //             //     // ROS_INFO("r: %i, g: %i, b: %i",r,g,b);
-    //             //     ROS_INFO("x: %i y: %i r: %i",x_coord,y_coord,r);
-    //             // }
-    //             // catch(const std::exception& e)
-    //             // {
-    //             //     ROS_ERROR("exception: %s", e.what());
-    //             // }
-    //             int r = cv_image.at<cv::Vec3b>(y_coord,x_coord)[2];
-    //             int g = cv_image.at<cv::Vec3b>(y_coord,x_coord)[1];
-    //             int b = cv_image.at<cv::Vec3b>(y_coord,x_coord)[0];
+    // Iterate over each point in cloud
+    for (unsigned int i = 0; i < cloud.size(); i++)
+    {
+        if (cloud[i].z>0)
+        {
+            arma::mat point = arma::colvec( {cloud[i].x, cloud[i].y, cloud[i].z} );
+            // point.print("Point:");
+            // projection.print("Projection:");
+            // arma::mat point = arma::mat(4,1,arma::fill::ones);
+            // point(0,0) = cloud[i].x;
+            // point(1,0) = cloud[i].y;
+            // point(2,0) = cloud[i].z;        
+            // arma::mat point = arma::mat(4,1,arma::fill::ones);
+            // point(0,0) = cloud[i].x;
+            // point(1,0) = cloud[i].y;
+            // point(2,0) = cloud[i].z;
+            // arma::mat camera_coords;
+            arma::mat camera_coords = (projection*point)/cloud[i].z;
+            int x_coord = round(camera_coords(0,0));
+            int y_coord = round(camera_coords(1,0));
+            if (x_coord>=0 && x_coord<640 && y_coord>=0 && y_coord<480)
+            {
+                // ROS_INFO("x_coord: %i, y_coord: %i",x_coord,y_coord);
+                pcl::PointXYZRGB colored_point;
+                colored_point.x = cloud[i].x;
+                colored_point.y = cloud[i].y;
+                colored_point.z = cloud[i].z;
+                // try
+                // {
+                //     int r = cv_image.at<cv::Vec3b>(100,100)[2];
+                //     // int g = cv_image.at<cv::Vec3b>(0,0)[1];
+                //     // int b = cv_image.at<cv::Vec3b>(0,0)[0];
+                //     // ROS_INFO("r: %i, g: %i, b: %i",r,g,b);
+                //     ROS_INFO("x: %i y: %i r: %i",x_coord,y_coord,r);
+                // }
+                // catch(const std::exception& e)
+                // {
+                //     ROS_ERROR("exception: %s", e.what());
+                // }
+                int r = cv_image.at<cv::Vec3b>(y_coord,x_coord)[2];
+                int g = cv_image.at<cv::Vec3b>(y_coord,x_coord)[1];
+                int b = cv_image.at<cv::Vec3b>(y_coord,x_coord)[0];
                 
-    //             colored_point.r = r;
-    //             colored_point.g = g;
-    //             colored_point.b = b;
-    //             colored_point.a = 255;
-    //             cloud_out.push_back(colored_point);
-    //         }
+                colored_point.r = r;
+                colored_point.g = g;
+                colored_point.b = b;
+                colored_point.a = 255;
+                cloud_out.push_back(colored_point);
+            }
 
-    //         // pcl::PointXYZRGB colored_point;
-    //         // colored_point.x = cloud[i].x;
-    //         // colored_point.y = cloud[i].y;
-    //         // colored_point.z = cloud[i].z;
-    //         // colored_point.r = 0;
-    //         // colored_point.g = 100;
-    //         // colored_point.b = 100;
-    //         // colored_point.a = 255;
-    //         // cloud_out.push_back(colored_point);
-    //     }
-    // }
+            // pcl::PointXYZRGB colored_point;
+            // colored_point.x = cloud[i].x;
+            // colored_point.y = cloud[i].y;
+            // colored_point.z = cloud[i].z;
+            // colored_point.r = 0;
+            // colored_point.g = 100;
+            // colored_point.b = 100;
+            // colored_point.a = 255;
+            // cloud_out.push_back(colored_point);
+        }
+    }
 
-    // // Convert pcl to sensor msg
-    // sensor_msgs::PointCloud2 output;
-    // pcl::toROSMsg(cloud_out,output);
-    // output.header.stamp = input->header.stamp;
-    // output.header.frame_id = cam_frame_id;
+    // Convert pcl to sensor msg
+    sensor_msgs::PointCloud2 output;
+    pcl::toROSMsg(cloud_out,output);
+    output.header.stamp = input->header.stamp;
+    output.header.frame_id = cam_frame_id;
 
 
-    // // Publish the data.
-    // cloud_pub.publish (output);
+    // Publish the data.
+    cloud_pub.publish (output);
 }
 
 void print_image()
@@ -213,7 +213,6 @@ int main (int argc, char** argv)
     // Initialize ROS
     ros::init (argc, argv, "color_cloud");
     ros::NodeHandle nh;
-    static tf::TransformListener listener;
 
 
     // Create a ROS subscriber for the input image
@@ -231,15 +230,6 @@ int main (int argc, char** argv)
     ros::Rate loop_rate(100);
     while(ros::ok())
     {
-        tf::StampedTransform transform;
-        try{
-            listener.lookupTransform("/velodyne", "/velodyne",  
-                                    ros::Time(0), transform);
-        }
-        catch (tf::TransformException ex){
-            ROS_ERROR("%s",ex.what());
-            ros::Duration(1.0).sleep();
-        }
         ros::spinOnce();
         loop_rate.sleep();
     }
