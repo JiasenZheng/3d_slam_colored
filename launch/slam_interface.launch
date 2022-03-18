@@ -1,6 +1,6 @@
 <launch>
     <arg name = "calib" default = "false" doc = "whether in calibration mode"/>
     <node name = "rviz" pkg = "rviz" type = "rviz" args="-d $(find slam)/config/real_world.rviz" unless = "$(arg calib)"/>
-    <node name = "rviz" pkg = "rviz" type = "rviz" args="-d $(find slam)/config/real_world.rviz" if = "$(arg calib)"/>
+    <node name = "rviz" pkg = "rviz" type = "rviz" args="-d $(find slam)/config/calibration.rviz" if = "$(arg calib)"/>
     
 </launch>

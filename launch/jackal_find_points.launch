@@ -7,6 +7,7 @@
     </include>
     <include file="$(find realsense2_camera)/launch/rs_camera.launch">
         <arg name = "align_depth" value="true"/>
+        <arg name = "filters" value="pointcloud"/>
     </include>
 
     <node pkg="tf" type="static_transform_publisher" name="base2velodyne" args="0.09 0.0 0.25 0 0 0 /base_link /velodyne 100" />
