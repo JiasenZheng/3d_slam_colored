@@ -26,7 +26,6 @@ static ros::Publisher cloud_pub;
 static std::string cam_frame_id = "camera_depth_optical_frame";
 static std::string cloud_frame_id = "velodyne";
 static tf2_ros::Buffer tf_buffer;
-static tf::TransformListener listener;
 static sensor_msgs::Image sensor_image;
 namespace enc = sensor_msgs::image_encodings;
 static cv::Mat cv_image;
@@ -214,6 +213,8 @@ int main (int argc, char** argv)
     // Initialize ROS
     ros::init (argc, argv, "color_cloud");
     ros::NodeHandle nh;
+    static tf::TransformListener listener;
+
 
     // Create a ROS subscriber for the input image
     ros::Subscriber image_sub = nh.subscribe("/camera/color/image_raw", 1, image_cb);
