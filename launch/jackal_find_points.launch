@@ -21,11 +21,13 @@
     <node name = "find_velo_points" pkg = "velo2rs" type = "velo2rs_find_velo_points">
         <remap from="/set_pos" to="/velo/set_pos"/>
         <remap from="/record_point" to="/velo/record_point"/>
+        <remap from="/mid/points" to="/velodyne_points"/>
     </node>
 
     <node name = "find_rs_points" pkg = "velo2rs" type = "velo2rs_find_rs_points">
         <remap from="/set_pos" to="/rs/set_pos"/>
         <remap from="/record_point" to="/rs/record_point"/>
+        <remap from="/realsense/depth/color/points" to="camera/depth/color/points"/>
     </node>
 
 
