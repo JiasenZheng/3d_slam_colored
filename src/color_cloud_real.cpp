@@ -76,8 +76,8 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
     transform.header.frame_id = cam_frame_id;
     transform.header.stamp = input->header.stamp;
     transform.transform.translation.x = 0.00;
-    transform.transform.translation.y = 0.00;
-    transform.transform.translation.z = 0.00;
+    transform.transform.translation.y = -0.010;
+    transform.transform.translation.z = -0.050;
     transform.transform.rotation.x =  0.500;
     transform.transform.rotation.y = -0.500;
     transform.transform.rotation.z =  0.500;
