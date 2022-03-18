@@ -2,6 +2,7 @@
     <!-- export JACKAL_URDF_EXTRAS=$HOME/Desktop/realsense.urdf.xacro -->
     <arg name = "use_rviz" default = "false" doc = "whether to use rviz"/>
     <arg name = "use_rtab" default = "true" doc = "whether to use rtabmap"/>
+    <arg name = "color_cloud" default = "false" doc = "whether to use color_cloud node"/>
 
     <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch">
 	    <arg name="organize_cloud" value="true"/>
@@ -32,7 +33,7 @@
 
     <!-- launch jackal control teleop.launch -->
     <include file = "$(find jackal_control)/launch/teleop.launch">
-       <arg name = "joystick" value="true"/>
+       <arg name = "joystick" value="false"/>
     </include> 
 
     <!-- launch rtabmap -->
@@ -42,5 +43,8 @@
     <include file = "$(find slam)/launch/move_base.launch"/> 
 
     <node name = "rviz" pkg = "rviz" type = "rviz" args="-d $(find slam)/config/jackal.rviz" if = "$(arg use_rviz)"/>
+
+    <node name = "color_cloud_real" pkg = "slam" type = "color_cloud_real" output = "screen" if = "$(arg color_cloud)"/>
+
 
 </launch>
