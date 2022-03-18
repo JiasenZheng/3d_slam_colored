@@ -394,7 +394,7 @@ Visualization Manager:
       Value: false
   Enabled: true
   Global Options:
-    Background Color: 143; 143; 143
+    Background Color: 0; 0; 0
     Default Light: true
     Fixed Frame: odom
     Frame Rate: 30
@@ -420,7 +420,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 4.5124101638793945
+      Distance: 4.453668594360352
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -436,9 +436,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.649796187877655
+      Pitch: 0.719795286655426
       Target Frame: <Fixed Frame>
-      Yaw: 3.6323513984680176
+      Yaw: 3.687356948852539
     Saved: ~
 Window Geometry:
   Displays:
