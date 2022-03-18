@@ -1,0 +1,34 @@
+<launch>
+    <!-- export JACKAL_URDF_EXTRAS=$HOME/Desktop/realsense.urdf.xacro -->
+    <arg name = "use_rviz" default = "false" doc = "whether to use rviz"/>
+    <arg name = "debug" default = "false" doc = "whether to debug"/>
+
+    <!-- load pid gains yaml file -->
+    <rosparam command = "load" file = "$(find slam)/config/pid_gains.yaml"/>
+
+    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch">
+	    <arg name="organize_cloud" value="true"/>
+    </include>
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+        <arg name = "align_depth" value="true"/>
+        <arg name = "filters" value="pointcloud"/>
+    </include>
+
+    <node pkg="tf" type="static_transform_publisher" name="base2velodyne" args="0.09 0.0 0.25 0 0 0 /base_link /velodyne 100" />
+    <node pkg="tf" type="static_transform_publisher" name="velo2rs" args="0.169121 0.149266 -0.155839 -1.683598 -0.077344 -1.455875 /velodyne /camera_depth_optical_frame 100" />
+
+
+    <!-- include jackal description launch file -->
+    <include file = "$(find slam)/launch/jackal_description.launch">
+        <arg name = "config" value = "3d_laser"/>
+    </include>
+
+    <include file = "$(find slam)/launch/jackal_control.launch"/>
+
+
+    <node name = "rviz" pkg = "rviz" type = "rviz" args = "-d $(find slam)/config/color_cloud.rviz" if = "$(arg use_rviz)"/>
+
+    <node name = "color_cloud_real" pkg = "slam" type = "color_cloud_real" output = "screen" unless = "$(arg debug)"/>
+    
+
+</launch>
