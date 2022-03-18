@@ -233,7 +233,7 @@ int main (int argc, char** argv)
     {
         tf::StampedTransform transform;
         try{
-            listener.lookupTransform("/base_link", "/velodyne",  
+            listener.lookupTransform("/velodyne", "/velodyne",  
                                     ros::Time(0), transform);
         }
         catch (tf::TransformException ex){
