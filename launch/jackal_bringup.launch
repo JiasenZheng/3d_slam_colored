@@ -32,10 +32,8 @@
 
     <!-- launch jackal control teleop.launch -->
     <include file = "$(find jackal_control)/launch/teleop.launch">
-       <arg name = "joystick" value="false"/>
+       <arg name = "joystick" value="true"/>
     </include> 
-
-
 
     <!-- launch rtabmap -->
     <include file = "$(find slam)/launch/3d_odom_rtabmap.launch" if = "$(arg use_rtab)"/>
