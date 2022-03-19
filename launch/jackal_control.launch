@@ -2,6 +2,6 @@
         <include file = "$(find jackal_base)/launch/base.launch"/>
 
         <include file = "$(find jackal_control)/launch/teleop.launch">
-            <arg name = "joystick" value="false"/>
+            <arg name = "joystick" value="true"/>
         </include> 
 </launch>
