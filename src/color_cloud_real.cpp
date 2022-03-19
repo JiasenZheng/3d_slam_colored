@@ -26,6 +26,7 @@ static ros::Publisher cloud_pub;
 static std::string cam_frame_id = "camera_depth_optical_frame";
 static std::string cloud_frame_id = "velodyne";
 static tf2_ros::Buffer tf_buffer;
+static tf2_ros::TransformListener tfListener;
 static sensor_msgs::Image sensor_image;
 namespace enc = sensor_msgs::image_encodings;
 static cv::Mat cv_image;
@@ -73,15 +74,15 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
     
     // tf::StampedTransform transform;
 
-    transform.header.frame_id = cam_frame_id;
-    transform.header.stamp = input->header.stamp;
-    transform.transform.translation.x = -0.030;  //-y
-    transform.transform.translation.y = -0.030;  // -z
-    transform.transform.translation.z = -0.050;
-    transform.transform.rotation.x =  0.500;
-    transform.transform.rotation.y = -0.500;
-    transform.transform.rotation.z =  0.500;
-    transform.transform.rotation.w =  0.500;
+    // transform.header.frame_id = cam_frame_id;
+    // transform.header.stamp = input->header.stamp;
+    // transform.transform.translation.x = -0.030;  //-y
+    // transform.transform.translation.y = -0.030;  // -z
+    // transform.transform.translation.z = -0.050;
+    // transform.transform.rotation.x =  0.500;
+    // transform.transform.rotation.y = -0.500;
+    // transform.transform.rotation.z =  0.500;
+    // transform.transform.rotation.w =  0.500;
 
 
 
@@ -94,17 +95,16 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
     // transform.transform.rotation.z = 0.574;
     // transform.transform.rotation.w =  0.478;
 
-    // try
-    // {
-    //     // transform = tf_buffer.lookupTransform(cam_frame_id,cloud_frame_id, input->header.stamp);
-    //     listener.lookupTransform("/camera_depth_optical_frame","/velodyne",ros::Time(0),transform);
+    try
+    {
+        ros::Duration(3.0).sleep();
+        transform = tf_buffer.lookupTransform(cam_frame_id,cloud_frame_id, input->header.stamp);
 
-    // }
-    // catch(const tf2::TransformException& e)
-    // {
-    //     ROS_WARN_STREAM("LookupTransform failed. Reason: " << e.what());
-    //     ros::Duration(1.0).sleep();
-    // }
+    }
+    catch(const tf2::TransformException& e)
+    {
+        ROS_WARN_STREAM("LookupTransform failed. Reason: " << e.what());
+    }
 
     // Transform point cloud to camera frame
     sensor_msgs::PointCloud2 cloud_cam;
