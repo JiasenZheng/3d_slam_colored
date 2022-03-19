@@ -175,18 +175,6 @@ void cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
     cloud_pub.publish (output);
 }
 
-void print_image()
-{
-    for (int r = 0; r < cv_image.rows; r++)
-    {
-        for (int c = 0; c < cv_image.cols; c++)
-        {
-            int b = cv_image.at<cv::Vec3b>(r,c)[0];
-            ROS_INFO("Row: %i, Col: %i, Blue: %i \n", r,c,b);
-            // ROS_INFO("Row: %i, Col: %i\n", r,c);
-        }
-    }
-}
 
 int main (int argc, char** argv)
 {
@@ -195,19 +183,19 @@ int main (int argc, char** argv)
     ros::NodeHandle nh;
     tf2_ros::TransformListener tfListener(tf_buffer);
 
-    for (int i = 0; i < 5; i++)
+    // for (int i = 0; i < 5; i++)
+    // {
+    try
     {
-        try
-        {
-            transform = tf_buffer.lookupTransform(cam_frame_id,cloud_frame_id, ros::Time(0));
-        }
-        catch(const tf2::TransformException& e)
-        {
-            ROS_WARN_STREAM("LookupTransform failed. Reason: " << e.what());
-            ros::Duration(1.0).sleep();
-            continue;
-        }
+        transform = tf_buffer.lookupTransform(cam_frame_id,cloud_frame_id, ros::Time(0));
     }
+    catch(const tf2::TransformException& e)
+    {
+        // ROS_WARN_STREAM("LookupTransform failed. Reason: " << e.what());
+        ros::Duration(1.0).sleep();
+        // continue;
+    }
+    // }
 
     // Create a ROS subscriber for the input image
     ros::Subscriber image_sub = nh.subscribe("/camera/color/image_raw", 1, image_cb);
