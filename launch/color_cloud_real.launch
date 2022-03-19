@@ -15,7 +15,7 @@
     </include>
 
     <node pkg="tf" type="static_transform_publisher" name="base2velodyne" args="0.09 0.0 0.25 0 0 0 /base_link /velodyne 100" />
-    <node pkg="tf" type="static_transform_publisher" name="velo2rs" args="0.0 0.0 0.0 -1.5707 0.0 -1.5707 /velodyne /camera_depth_optical_frame 100" />
+    <node pkg="tf" type="static_transform_publisher" name="velo2rs" args="0.0 -0.1 0.0 -1.5707 0.0 -1.5707 /velodyne /camera_depth_optical_frame 100" />
 
 
     <!-- load pid gains yaml file -->

@@ -210,10 +210,52 @@ Visualization Manager:
       Use rainbow: true
       Value: true
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        base_link:
+          Value: false
+        camera_aligned_depth_to_color_frame:
+          Value: false
+        camera_color_frame:
+          Value: false
+        camera_color_optical_frame:
+          Value: false
+        camera_depth_frame:
+          Value: false
+        camera_depth_optical_frame:
+          Value: true
+        camera_link:
+          Value: false
+        chassis_link:
+          Value: false
+        front_fender_link:
+          Value: false
+        front_left_wheel_link:
+          Value: false
+        front_mount:
+          Value: false
+        front_right_wheel_link:
+          Value: false
+        imu_link:
+          Value: false
+        mid_mount:
+          Value: false
+        navsat_link:
+          Value: false
+        odom:
+          Value: false
+        rear_fender_link:
+          Value: false
+        rear_left_wheel_link:
+          Value: false
+        rear_mount:
+          Value: false
+        rear_right_wheel_link:
+          Value: false
+        velodyne:
+          Value: true
       Marker Alpha: 1
       Marker Scale: 1
       Name: TF
@@ -221,9 +263,35 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        odom:
+          base_link:
+            chassis_link:
+              front_fender_link:
+                {}
+              front_left_wheel_link:
+                {}
+              front_right_wheel_link:
+                {}
+              imu_link:
+                {}
+              mid_mount:
+                front_mount:
+                  {}
+                rear_mount:
+                  {}
+              navsat_link:
+                {}
+              rear_fender_link:
+                {}
+              rear_left_wheel_link:
+                {}
+              rear_right_wheel_link:
+                {}
+            velodyne:
+              camera_depth_optical_frame:
+                {}
       Update Interval: 0
-      Value: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 71; 71; 71
@@ -252,7 +320,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 4.724677562713623
+      Distance: 3.3661651611328125
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -268,9 +336,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.3297947645187378
+      Pitch: 0.5247948169708252
       Target Frame: <Fixed Frame>
-      Yaw: 3.6541926860809326
+      Yaw: 3.669187068939209
     Saved: ~
 Window Geometry:
   Displays:
