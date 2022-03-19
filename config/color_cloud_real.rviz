@@ -11,7 +11,7 @@ Panels:
         - /TF1
         - /TF1/Frames1
       Splitter Ratio: 0.5
-    Tree Height: 685
+    Tree Height: 614
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -210,52 +210,10 @@ Visualization Manager:
       Use rainbow: true
       Value: true
     - Class: rviz/TF
-      Enabled: true
+      Enabled: false
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        base_link:
-          Value: false
-        camera_aligned_depth_to_color_frame:
-          Value: true
-        camera_color_frame:
-          Value: false
-        camera_color_optical_frame:
-          Value: false
-        camera_depth_frame:
-          Value: false
-        camera_depth_optical_frame:
-          Value: true
-        camera_link:
-          Value: false
-        chassis_link:
-          Value: false
-        front_fender_link:
-          Value: false
-        front_left_wheel_link:
-          Value: false
-        front_mount:
-          Value: false
-        front_right_wheel_link:
-          Value: false
-        imu_link:
-          Value: false
-        mid_mount:
-          Value: false
-        navsat_link:
-          Value: false
-        odom:
-          Value: false
-        rear_fender_link:
-          Value: false
-        rear_left_wheel_link:
-          Value: false
-        rear_mount:
-          Value: false
-        rear_right_wheel_link:
-          Value: false
-        velodyne:
-          Value: true
       Marker Alpha: 1
       Marker Scale: 1
       Name: TF
@@ -263,40 +221,14 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        odom:
-          base_link:
-            chassis_link:
-              front_fender_link:
-                {}
-              front_left_wheel_link:
-                {}
-              front_right_wheel_link:
-                {}
-              imu_link:
-                {}
-              mid_mount:
-                front_mount:
-                  {}
-                rear_mount:
-                  {}
-              navsat_link:
-                {}
-              rear_fender_link:
-                {}
-              rear_left_wheel_link:
-                {}
-              rear_right_wheel_link:
-                {}
-            velodyne:
-              camera_depth_optical_frame:
-                {}
+        {}
       Update Interval: 0
-      Value: true
+      Value: false
   Enabled: true
   Global Options:
-    Background Color: 0; 0; 0
+    Background Color: 71; 71; 71
     Default Light: true
-    Fixed Frame: odom
+    Fixed Frame: base_link
     Frame Rate: 30
   Name: root
   Tools:
@@ -320,7 +252,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 5.432971954345703
+      Distance: 4.724677562713623
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -336,19 +268,19 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5797949433326721
+      Pitch: 0.3297947645187378
       Target Frame: <Fixed Frame>
-      Yaw: 2.23419189453125
+      Yaw: 3.6541926860809326
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 1142
+  Height: 1049
   Hide Left Dock: false
   Hide Right Dock: true
   Image:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000001f1000003dcfc020000000afb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003b000002e8000000c700fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000a0049006d0061006700650100000329000000ee0000001600fffffffb0000000a0049006d00610067006501000002d2000001450000000000000000000000010000010f000003dcfc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003b000003dc000000a000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000007800000003efc0100000002fb0000000800540069006d00650100000000000007800000024400fffffffb0000000800540069006d0065010000000000000450000000000000000000000589000003dc00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000001f10000037ffc020000000afb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003b000002a1000000c700fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000a0049006d00610067006501000002e2000000d80000001600fffffffb0000000a0049006d00610067006501000002d2000001450000000000000000000000010000010f000003dcfc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003b000003dc000000a000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000007800000003efc0100000002fb0000000800540069006d00650100000000000007800000024400fffffffb0000000800540069006d00650100000000000004500000000000000000000005890000037f00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -358,5 +290,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1920
-  X: 0
-  Y: 27
+  X: 1920
+  Y: 0
