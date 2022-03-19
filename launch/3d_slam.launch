@@ -13,9 +13,9 @@
     </include>
 
 
-    <!-- set transforms -->
+    <!-- Set tfs for both sensors -->
     <node pkg="tf" type="static_transform_publisher" name="base2velodyne" args="0.09 0.0 0.25 0 0 0 /base_link /velodyne 100" />
-    <node pkg="tf" type="static_transform_publisher" name="velo2rs" args="0.0 0.07 0.0 -1.5707 0.0 -1.5707 /velodyne /camera_depth_optical_frame 100" />
+    <node pkg="tf" type="static_transform_publisher" name="base2camera" args="0.14 -0.03 0.22 0 0 0 /base_link /camera_link 100" />
 
     <!-- load pid gains yaml file -->
     <rosparam command = "load" file = "$(find slam)/config/pid_gains.yaml"/>
