@@ -4,8 +4,24 @@
     <arg name = "use_rtab" default = "true" doc = "whether to use rtabmap"/>
     <arg name = "color_cloud" default = "false" doc = "whether to use color_cloud node"/>
     
-    <!-- bring up jackal -->
-    <include file = "$(find slam)/launch/jackal_bringup.launch"/>
+    <!-- bring up velodyne and realsense -->
+    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch">
+	    <arg name="organize_cloud" value="true"/>
+    </include>
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+        <arg name = "align_depth" value="true"/>
+    </include>
+
+
+    <!-- set transforms -->
+    <node pkg="tf" type="static_transform_publisher" name="base2velodyne" args="0.09 0.0 0.25 0 0 0 /base_link /velodyne 100" />
+    <node pkg="tf" type="static_transform_publisher" name="velo2rs" args="0.0 0.07 0.0 -1.5707 0.0 -1.5707 /velodyne /camera_depth_optical_frame 100" />
+
+    <!-- load pid gains yaml file -->
+    <rosparam command = "load" file = "$(find slam)/config/pid_gains.yaml"/>
+
+    <!-- include jackal_control -->
+    <include file =  "$(find slam)/launch/jackal_control.launch"/>
     
     <!-- launch rtabmap -->
     <include file = "$(find slam)/launch/3d_odom_rtabmap.launch" if = "$(arg use_rtab)"/>
