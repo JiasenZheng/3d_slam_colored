@@ -28,7 +28,7 @@
 
     <node name = "rviz" pkg = "rviz" type = "rviz" args = "-d $(find slam)/config/color_cloud.rviz" if = "$(arg use_rviz)"/>
 
-    <node name = "color_cloud_real" pkg = "slam" type = "color_cloud_real" output = "screen" unless = "$(arg debug)"/>
+    <!-- <node name = "color_cloud_real" pkg = "slam" type = "color_cloud_real" output = "screen" unless = "$(arg debug)"/> -->
     
 
 </launch>
