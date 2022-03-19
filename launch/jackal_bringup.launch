@@ -1,18 +1,21 @@
 <launch>
-    
+    <arg name = "set_tf" default = "true" doc = "whether to set transforms"/>
+
     <!-- bring up velodyne and realsense -->
     <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch">
 	    <arg name="organize_cloud" value="true"/>
     </include>
     <include file="$(find realsense2_camera)/launch/rs_camera.launch">
         <arg name = "align_depth" value="true"/>
+        <arg name = "filters" value="pointcloud"/>
     </include>
 
 
     <!-- Set tfs for both sensors -->
-    <node pkg="tf" type="static_transform_publisher" name="base2velodyne" args="0.09 0.0 0.25 0 0 0 /base_link /velodyne 100" />
-    <node pkg="tf" type="static_transform_publisher" name="base2camera" args="0.14 -0.03 0.22 0 0 0 /base_link /camera_link 100" />
-
+    <group if = "$(arg set_tf)">
+        <node pkg="tf" type="static_transform_publisher" name="base2velodyne" args="0.09 0.0 0.25 0 0 0 /base_link /velodyne 100" />
+        <node pkg="tf" type="static_transform_publisher" name="base2camera" args="0.14 -0.03 0.22 0 0 0 /base_link /camera_link 100" />
+    </group>
 
     <!-- load pid gains yaml file -->
     <rosparam command = "load" file = "$(find slam)/config/pid_gains.yaml"/>
