@@ -28,6 +28,7 @@ Please follow the [instructions](https://github.com/dinvincible98/Jackal_ROS_Noe
 
 ### 3D SLAM
 <br>
+
 * The rtabmap-related node and the parameter setups are all include in "3d_odom_rtabmap.launch" file for our configurations
 * To launch the 3D slam in simulation, in the terminal, run the following command:
 ```shell
@@ -49,29 +50,30 @@ roslaunch slam gazebo_simulation.launch use_rtab:=true
     - control the Jackal to move around using the PS4 controller and enjoy slamming
 
 ### Calibration
-<br>
 To calibrate and obtain the extrinsic parameters between lidar and the camera in the real robot, follow the steps below:
-    - turn on your Jackal and place your target object in the front of the robot
-    - ssh to your Jackal computer
-    - source the jackal setup bash "setup_jackal.bash" under the slam package directory
-    - run the Jackal find points launch file in the terminal:
+
+    * turn on your Jackal and place your target object in the front of the robot
+    * ssh to your Jackal computer
+    * source the jackal setup bash "setup_jackal.bash" under the slam package directory
+    * run the Jackal find points launch file in the terminal:
     ```shell
     roslaunch slam jackal_find_points.launch 
     ```
-    - in the client (your personal linux pc), source the pc setup bash "setup_pc.bash" under the slam package directory
-    - run the interface launch file by:
+    * in the client (your personal linux pc), source the pc setup bash "setup_pc.bash" under the slam package directory
+    * run the interface launch file by:
     ```shell
     roslaunch slam jackal_interface.launch calib:=true
     ```
-    - follow the instructions in the [README](https://github.com/JiasenZheng/velo2rs_calibration) of the calibration package to find and update the reference points
-    - after collecting and saving all six reference points, run the calibration node to get the extrinsic parameters by:
+    * follow the instructions in the [README](https://github.com/JiasenZheng/velo2rs_calibration) of the calibration package to find and update the reference points
+    * after collecting and saving all six reference points, run the calibration node to get the extrinsic parameters by:
     ```shell
     rosrun velo2rs calibration
     ```
-    - update the static transform in the "jackal_bringup.launch" with the calibrated extrinsic parameters
+    * update the static transform in the "jackal_bringup.launch" with the calibrated extrinsic parameters
 
 ### Point Cloud Colourization
 <br>
+
 * To run it in simulation, follow the steps below:
     - run the simulation environment by:
     ```shell
