@@ -2,7 +2,7 @@
 
 The package implements 3D SLAM using the Rtab-map ROS package on a Jackal UGV. The Jackal is equipped with a Velodyne lidar and a Realsense camera. A point cloud colorization algorithm and an extrinsic calibration package are also developed in the project. A detailed explanation of the project can be found in my [portfolio post](https://jiasenzheng.github.io/projects/0-slam-and-point-cloud-colourisation). The instructions of calibration can be found in the [README](https://github.com/JiasenZheng/velo2rs_calibration) of the calibration package.
 
-### Dependencies
+## Dependencies
 * Jackal
 * tf2_ros
 * move_base
@@ -13,7 +13,8 @@ The package implements 3D SLAM using the Rtab-map ROS package on a Jackal UGV. T
 * realsnese2_camera
 * [velo2rs](https://github.com/JiasenZheng/velo2rs_calibration)
 
-### Jackal setup
+## Jackal setup
+<br>
 Please follow the [instructions](https://github.com/dinvincible98/Jackal_ROS_Noetic_Bringup) in Mingqing Yuan's repository to setup the Jackal UGV in ROS (noetic).
 
 **In addtion to his instruction**
@@ -26,7 +27,7 @@ Please follow the [instructions](https://github.com/dinvincible98/Jackal_ROS_Noe
     - set the "joystick" to be true to use a PS4 controller
     - set the "joy_dev" to be "/dev/input/js0," which is the port to receive the PS4 controller signal through Bluetooth
 
-### 3D SLAM
+## 3D SLAM
 <br>
 
 * The rtabmap-related node and the parameter setups are all include in "3d_odom_rtabmap.launch" file for our configurations
@@ -49,29 +50,30 @@ roslaunch slam gazebo_simulation.launch use_rtab:=true
     ```
     - control the Jackal to move around using the PS4 controller and enjoy slamming
 
-### Calibration
+## Calibration
+<br>
 To calibrate and obtain the extrinsic parameters between lidar and the camera in the real robot, follow the steps below:
 
-    * turn on your Jackal and place your target object in the front of the robot
-    * ssh to your Jackal computer
-    * source the jackal setup bash "setup_jackal.bash" under the slam package directory
-    * run the Jackal find points launch file in the terminal:
-    ```shell
-    roslaunch slam jackal_find_points.launch 
-    ```
-    * in the client (your personal linux pc), source the pc setup bash "setup_pc.bash" under the slam package directory
-    * run the interface launch file by:
-    ```shell
-    roslaunch slam jackal_interface.launch calib:=true
-    ```
-    * follow the instructions in the [README](https://github.com/JiasenZheng/velo2rs_calibration) of the calibration package to find and update the reference points
-    * after collecting and saving all six reference points, run the calibration node to get the extrinsic parameters by:
-    ```shell
-    rosrun velo2rs calibration
-    ```
-    * update the static transform in the "jackal_bringup.launch" with the calibrated extrinsic parameters
+* turn on your Jackal and place your target object in the front of the robot
+* ssh to your Jackal computer
+* source the jackal setup bash "setup_jackal.bash" under the slam package directory
+* run the Jackal find points launch file in the terminal:
+```shell
+roslaunch slam jackal_find_points.launch 
+```
+* in the client (your personal linux pc), source the pc setup bash "setup_pc.bash" under the slam package directory
+* run the interface launch file by:
+```shell
+roslaunch slam jackal_interface.launch calib:=true
+```
+* follow the instructions in the [README](https://github.com/JiasenZheng/velo2rs_calibration) of the calibration package to find and update the reference points
+* after collecting and saving all six reference points, run the calibration node to get the extrinsic parameters by:
+```shell
+rosrun velo2rs calibration
+```
+* update the static transform in the "jackal_bringup.launch" with the calibrated extrinsic parameters
 
-### Point Cloud Colourization
+## Point Cloud Colourization
 <br>
 
 * To run it in simulation, follow the steps below:
