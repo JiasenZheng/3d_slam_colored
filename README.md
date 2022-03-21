@@ -15,7 +15,9 @@ The package implements 3D SLAM using the Rtab-map ROS package on a Jackal UGV. T
 
 ## Jackal setup
 <br>
-Please follow the [instructions](https://github.com/dinvincible98/Jackal_ROS_Noetic_Bringup) in Mingqing Yuan's repository to setup the Jackal UGV in ROS (noetic).
+Please follow the instructions in Mingqing Yuan's repository to setup the Jackal UGV in ROS.
+
+* [instructions](https://github.com/dinvincible98/Jackal_ROS_Noetic_Bringup)
 
 **In addtion to his instruction**
 <br>
