@@ -66,6 +66,7 @@
   <exec_depend>nodelet</exec_depend>
   <exec_depend>rtabmap_ros</exec_depend>
   <exec_depend>velodyne_pointcloud</exec_depend>
+  <exec_depend>velo2rs</exec_depend>
   <exec_depend>realsense2_camera</exec_depend>
   <build_depend>libpcl-all-dev</build_depend>
   <exec_depend>libpcl-all</exec_depend>
